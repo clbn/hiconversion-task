@@ -14,7 +14,7 @@
 <div ng-controller="projectController">
   <table>
     <tr>
-      <th></th>
+      <th><input type="checkbox" ng-model="headerChecked" ng-click="handleHeaderCheckbox(headerChecked)"/></th>
       <th class="title">Title</th>
       <th class="budget">Budget</th>
     </tr>
@@ -26,7 +26,7 @@
     <tr>
       <th></th>
       <th class="title">Total:</th>
-      <th class="budget">{{totalBudget()}}</th>
+      <th class="budget">{{getTotalBudget()}}</th>
     </tr>
   </table>
 </div>

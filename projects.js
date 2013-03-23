@@ -27,7 +27,13 @@ function projectController($scope) {
     }
   ];
 
-  $scope.totalBudget = function() {
+  $scope.handleHeaderCheckbox = function(checked) {
+    angular.forEach($scope.projects, function(project) {
+      project.checked = checked;
+    });
+  };
+
+  $scope.getTotalBudget = function() {
     var sum = 0;
     angular.forEach($scope.projects, function(project) {
       sum += project.budget;

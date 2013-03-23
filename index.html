@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>HiConversion task</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+  <script type="text/javascript" src="./projects.js"></script>
+  <link href="./projects.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<h1>Projects</h1>
+
+<div ng-controller="projectController">
+  <table>
+    <tr>
+      <th></th>
+      <th class="title">Title</th>
+      <th class="budget">Budget</th>
+    </tr>
+    <tr ng-repeat="project in projects" class="checked-{{project.checked}}">
+      <td><input type="checkbox" ng-model="project.checked"/></td>
+      <td class="title">{{project.title}}</td>
+      <td class="budget">{{project.budget}}</td>
+    </tr>
+    <tr>
+      <th></th>
+      <th class="title">Total:</th>
+      <th class="budget">{{totalBudget()}}</th>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

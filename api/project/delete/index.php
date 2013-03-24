@@ -7,7 +7,7 @@ header('Content-Type: application/json;charset=utf-8');
 
 // Tossing coin...
 if (mt_rand(1,2) > 1) {
-  print '{ "result": "Ok", "message": "Project(s) successfully deleted" }';
+  print '{ "result": "Ok", "message": "Projects successfully deleted" }';
 } else {
   print '{ "result": "Error", "message": "Some error occured, try again" }';
 }

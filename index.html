@@ -15,7 +15,7 @@
 
   <table>
     <tr>
-      <th><input type="checkbox" ng-model="headerChecked" ng-click="handleHeaderCheckbox(headerChecked)"/></th>
+      <th><input type="checkbox" ng-model="headerChecked" ng-click="handleHeaderCheckbox(headerChecked)" ng-disabled="projects.length==0"/></th>
       <th class="title">Title</th>
       <th class="budget">Budget</th>
     </tr>

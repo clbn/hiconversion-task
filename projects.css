@@ -52,6 +52,10 @@ table td {
   padding: 6px;
   text-align: left;
 }
+table th.title,
+table td.title {
+  width: 25em;
+}
 table th.budget,
 table td.budget {
   text-align: right;
@@ -62,6 +66,7 @@ table tr.checked-true td {
 table tr.empty-list td {
   color: #666;
   font-style: italic;
+  text-align: center;
 }
 
 button {

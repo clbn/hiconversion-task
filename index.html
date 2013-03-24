@@ -18,6 +18,9 @@
       <th class="title">Title</th>
       <th class="budget">Budget</th>
     </tr>
+    <tr class="empty-list" ng-show="projects.length==0">
+      <td colspan="3">There are no projects</td>
+    </tr>
     <tr ng-repeat="project in projects" class="checked-{{project.checked}}">
       <td><input type="checkbox" ng-model="project.checked"/></td>
       <td class="title">{{project.title}}</td>

@@ -29,6 +29,10 @@
       <th class="budget">{{getTotalBudget()}}</th>
     </tr>
   </table>
+
+  <button ng-click="deleteCheckedProjects()" ng-disabled="loading">Delete checked projects</button>
+
+  <div class="notification {{notification.result}}">{{notification.message}}</div>
 </div>
 
 </body>

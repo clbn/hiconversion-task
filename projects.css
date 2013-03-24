@@ -25,6 +25,7 @@ h1 {
 
 table {
   border-collapse: collapse;
+  margin: 0 0 1.5em 0;
 }
 table th,
 table td {
@@ -38,4 +39,28 @@ table td.budget {
 }
 table tr.checked-true td {
   background-color: #eee;
+}
+
+button {
+  display: block;
+  padding: .5em;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  margin: 0 0 1.5em 0;
+}
+
+.notification {
+  display: inline-block;
+  padding: .85em;
+}
+.notification.loading {
+  font-style: italic;
+  background: #fff url('./loading.gif') 0% 50% no-repeat;
+  padding-left: 1.5em;
+}
+.notification.Ok {
+  background-color: #dfd;
+}
+.notification.Error {
+  background-color: #fdd;
 }

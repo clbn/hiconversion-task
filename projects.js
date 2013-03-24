@@ -1,4 +1,4 @@
-function projectController($scope) {
+function projectController($scope, $http) {
   $scope.projects = [
     {
       "id": 1,
@@ -27,6 +27,10 @@ function projectController($scope) {
     }
   ];
 
+  $scope.loading = false;
+
+  $scope.notification = {};
+
   $scope.handleHeaderCheckbox = function(checked) {
     angular.forEach($scope.projects, function(project) {
       project.checked = checked;
@@ -40,4 +44,53 @@ function projectController($scope) {
     });
     return sum;
   };
+
+  $scope.deleteCheckedProjects = function() {
+    var cleanedList = $scope.getCleanedList();
+    $scope.loading = true;
+    $scope.notification = { 'result': 'loading', 'message': 'Loading...' };
+    $http
+      .post(
+        './api/project/delete/',
+        cleanedList
+      )
+      .success(function(data) {
+        $scope.loading = false;
+        $scope.notification = { 'result': data.result, 'message': data.message };
+        if (data.result == 'Ok') {
+          $scope.hideCheckedProjects();
+        }
+      })
+      .error(function(data, status, header) {
+        $scope.loading = false;
+        $scope.notification = { 'result': 'Error', 'message': 'Can\'t delete projects: ' + status };
+      });
+  };
+
+  $scope.hideCheckedProjects = function() {
+    var oldProjects = $scope.projects;
+    $scope.projects = [];
+    angular.forEach(oldProjects, function(project) {
+      if (!project.checked) {
+        $scope.projects.push(project);
+      }
+    });
+    $scope.headerChecked = false;
+  }
+
+  $scope.getCleanedList = function() {
+    var cleanedList = [];
+    angular.forEach($scope.projects, function(project) {
+      var item = {
+        "id": project.id,
+        "title": project.title,
+        "budget": project.budget
+      };
+      if (project.checked) {
+        item.delete = 1;
+      }
+      cleanedList.push(item);
+    });
+    return cleanedList;
+  }
 }

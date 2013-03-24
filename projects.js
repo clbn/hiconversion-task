@@ -1,35 +1,11 @@
 function projectController($scope, $http) {
-  $scope.projects = [
-    {
-      "id": 1,
-      "title": "Violent Mummy Training",
-      "budget": 20123
-    }, {
-      "id": 21,
-      "title": "My Little Pirate DS",
-      "budget": 41266
-    }, {
-      "id": 37,
-      "title": "Regal Bazooka Dystopia",
-      "budget": 21214
-    }, {
-      "id": 44,
-      "title": "Intellectual Train Pro",
-      "budget": 66243
-    }, {
-      "id": 50,
-      "title": "John Romero's Bass Maniac",
-      "budget": 22999
-    }, {
-      "id": 12,
-      "title": "Wrath of the Weight Loss - The Dark Project",
-      "budget": 20000
-    }
-  ];
+  $scope.projects = [];
 
   $scope.loading = false;
 
   $scope.notification = {};
+
+  $scope.headerChecked = false;
 
   $scope.handleHeaderCheckbox = function(checked) {
     angular.forEach($scope.projects, function(project) {
@@ -59,10 +35,29 @@ function projectController($scope, $http) {
     return sum;
   };
 
+  $scope.loadProjects = function() {
+    $scope.loading = true;
+    $scope.notification = { 'result': 'loading', 'message': 'Loading projects...' };
+    $http
+      .get(
+        './api/project/getRecent/'
+      )
+      .success(function(data) {
+        $scope.loading = false;
+        $scope.notification = { 'result': 'Ok', 'message': 'Projects successfully loaded' };
+        $scope.headerChecked = false;
+        $scope.projects = data.result;
+      })
+      .error(function(data, status) {
+        $scope.loading = false;
+        $scope.notification = { 'result': 'Error', 'message': 'Can\'t load projects: ' + status };
+      });
+  };
+
   $scope.deleteCheckedProjects = function() {
     var cleanedList = $scope.getCleanedList();
     $scope.loading = true;
-    $scope.notification = { 'result': 'loading', 'message': 'Loading...' };
+    $scope.notification = { 'result': 'loading', 'message': 'Deleting projects...' };
     $http
       .post(
         './api/project/delete/',
@@ -75,7 +70,7 @@ function projectController($scope, $http) {
           $scope.hideCheckedProjects();
         }
       })
-      .error(function(data, status, header) {
+      .error(function(data, status) {
         $scope.loading = false;
         $scope.notification = { 'result': 'Error', 'message': 'Can\'t delete projects: ' + status };
       });

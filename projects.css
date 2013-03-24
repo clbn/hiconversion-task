@@ -17,10 +17,29 @@ body {
 }
 
 h1 {
+  display: inline-block;
   color: #333;
   font-size: 1.6em;
   font-weight: normal;
-  margin: 0 0 .7em 0;
+  line-height: 1.5em;
+  margin: 0 1em .7em 0;
+}
+
+.notification {
+  display: inline-block;
+  padding: .7em .8em;
+}
+.notification.loading {
+  color: #666;
+  font-style: italic;
+  background: #fff url('./loading.gif') 0% 50% no-repeat;
+  padding-left: 1.5em;
+}
+.notification.Ok {
+  background-color: #dfd;
+}
+.notification.Error {
+  background-color: #fdd;
 }
 
 table {
@@ -46,26 +65,9 @@ table tr.empty-list td {
 }
 
 button {
-  display: block;
+  display: inline-block;
   padding: .5em;
   border: 1px solid #ddd;
   background-color: #eee;
   margin: 0 0 1.5em 0;
-}
-
-.notification {
-  display: inline-block;
-  padding: .85em;
-}
-.notification.loading {
-  color: #666;
-  font-style: italic;
-  background: #fff url('./loading.gif') 0% 50% no-repeat;
-  padding-left: 1.5em;
-}
-.notification.Ok {
-  background-color: #dfd;
-}
-.notification.Error {
-  background-color: #fdd;
 }

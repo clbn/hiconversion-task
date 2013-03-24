@@ -9,9 +9,10 @@
 </head>
 <body>
 
-<h1>Projects</h1>
-
 <div ng-controller="projectController">
+  <h1>Projects</h1>
+  <div class="notification {{notification.result}}">{{notification.message}}</div>
+
   <table>
     <tr>
       <th><input type="checkbox" ng-model="headerChecked" ng-click="handleHeaderCheckbox(headerChecked)"/></th>
@@ -33,9 +34,8 @@
     </tr>
   </table>
 
+  <button ng-click="loadProjects()">Load project list</button>
   <button ng-click="deleteCheckedProjects()" ng-disabled="buttonDisabled()">Delete checked projects</button>
-
-  <div class="notification {{notification.result}}">{{notification.message}}</div>
 </div>
 
 </body>

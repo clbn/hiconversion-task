@@ -37,6 +37,20 @@ function projectController($scope, $http) {
     });
   };
 
+  $scope.buttonDisabled = function() {
+    var someChecked = false;
+    angular.forEach($scope.projects, function(project) {
+      if (project.checked) {
+        someChecked = true;
+      }
+    });
+    if (someChecked && !$scope.loading) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   $scope.getTotalBudget = function() {
     var sum = 0;
     angular.forEach($scope.projects, function(project) {
